@@ -1,6 +1,7 @@
 package com.example.deepakrattan.sqlitedatabasedemo;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(MainActivity.this, "Insertion Successful", Toast.LENGTH_LONG).show();
                     edtName.setText(" ");
                     edtPassword.setText(" ");
+                    edtEmail.setText(" ");
+                    edtPhone.setText(" ");
                 }
 
 
@@ -92,14 +95,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 Toast.makeText(MainActivity.this, buffer.toString(), Toast.LENGTH_LONG).show();
 
+                startActivity(new Intent(MainActivity.this, SearchActivity.class));
+
                 break;
             case R.id.btnUpdate:
                 Toast.makeText(MainActivity.this, "Update clicked", Toast.LENGTH_LONG).show();
                 db = myDatabase.getWritableDatabase();
                 ContentValues cv1 = new ContentValues();
-                cv1.put(MyDatabase.NAME, "Vishal Kumar");
+                cv1.put(MyDatabase.NAME, "Deepak Rattan");
                 String whereClause1 = MyDatabase.NAME + "=?";
-                String[] whereArgs1 = {"vishal"};
+                String[] whereArgs1 = {"Deepak"};
                 int u = db.update(MyDatabase.TABLE_NAME, cv1, whereClause1, whereArgs1);
                 Toast.makeText(MainActivity.this, "No.of rows updated = " + u, Toast.LENGTH_LONG).show();
                 break;
@@ -107,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(MainActivity.this, "Delete clicked", Toast.LENGTH_LONG).show();
                 db = myDatabase.getWritableDatabase();
                 String whereClause = MyDatabase.NAME + "=?";
-                String[] whereArgs = {"Ravi"};
+                String[] whereArgs = {"Deepak"};
                 int d = db.delete(MyDatabase.TABLE_NAME, whereClause, whereArgs);
                 Toast.makeText(MainActivity.this, "No. of Rows deleted = " + d, Toast.LENGTH_LONG).show();
                 break;
